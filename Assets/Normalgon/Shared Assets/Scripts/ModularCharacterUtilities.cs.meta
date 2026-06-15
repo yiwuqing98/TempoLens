@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a2a3677d2ba582f4587c0416d3ee9b07
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Scripts/ModularCharacterUtilities.cs
+  uploadId: 862226

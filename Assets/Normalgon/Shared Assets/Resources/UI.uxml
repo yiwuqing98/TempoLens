@@ -1,0 +1,160 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Normalgon/Shared%20Assets/Resources/CharacterEditor_StyleSheet.uss?fileID=7433441132597879392&amp;guid=e3c8edecf195e49429f5aaf5b56433f2&amp;type=3#CharacterEditor_StyleSheet" />
+    <ui:VisualElement name="frame-character-options" class="frame-column">
+        <ui:Label text="Character Options" class="header-text" />
+        <ui:VisualElement name="Material" class="frame-row">
+            <uie:ObjectField label="Material" name="override-material" />
+        </ui:VisualElement>
+        <ui:VisualElement name="LiveApplyBlendShapes" class="frame-row">
+            <ui:Toggle text="Live Apply Blendshapes" name="toggle-live-blendshape-apply" value="false" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Face" class="frame-row">
+            <ui:Slider label="Face" name="blendshape-face" low-value="0" high-value="100" show-input-field="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Hips" class="frame-row">
+            <ui:Slider label="Hips" name="blendshape-hips" low-value="0" high-value="100" show-input-field="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Waist" class="frame-row">
+            <ui:Slider label="Waist" name="blendshape-waist" low-value="0" high-value="100" show-input-field="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Bust" class="frame-row">
+            <ui:Slider label="Bust" name="blendshape-bust" low-value="0" high-value="100" show-input-field="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Feet" class="frame-row">
+            <ui:Slider label="Feet" name="blendshape-feet" low-value="0" high-value="100" show-input-field="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="AllParts" class="frame-row">
+            <ui:Slider label="All Parts" name="blendshape-allparts" low-value="0" high-value="100" show-input-field="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ApplyButtons" class="frame-row">
+            <ui:Button text="Apply Material" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button-apply-material-to-all" class="small-button" style="margin-right: 4px;" />
+            <ui:Button text="Apply Blendshapes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button-apply-blendshapes-to-all" class="small-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="frame-equipped-rig-parts" class="frame-column">
+        <ui:Label tabindex="-1" text="Rigged Parts" parse-escape-sequences="true" display-tooltip-when-elided="true" class="header-text" />
+        <ui:Foldout text="Rig Part Options" name="foldout-frame-rig" value="false" />
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Torso" name="torso" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="torso-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="torso-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Upper Legs" name="upper-legs" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upper-legs-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upper-legs-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Head" name="head" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Hand Left" name="hand-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="hand-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="hand-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Hand Right" name="hand-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="hand-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="hand-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Foot Left" name="foot-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="foot-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="foot-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Foot Right" name="foot-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="foot-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="foot-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement class="frame-row">
+            <uie:ObjectField label="Head Covering" name="head-covering" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-covering-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-covering-remove-button" class="button-remove" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="frame-equipped-socket-parts" class="frame-column">
+        <ui:Label tabindex="-1" text="Socketed Parts" parse-escape-sequences="true" display-tooltip-when-elided="true" class="header-text" />
+        <ui:Foldout text="Socket Part Options" name="foldout-frame-socket" value="false" />
+        <ui:Button text="Sync All Sockets from Rigged Parts" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button-sync-all-sockets" />
+        <ui:VisualElement name="Hat" class="frame-row">
+            <uie:ObjectField label="Hat" name="hat" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="hat-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="hat-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Mustache" class="frame-row">
+            <uie:ObjectField label="Mustache" name="mustache" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="mustache-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="mustache-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Beard" class="frame-row">
+            <uie:ObjectField label="Beard" name="beard" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="beard-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="beard-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ForearmLeft" class="frame-row">
+            <uie:ObjectField label="Forearm Left" name="forearm-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="forearm-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="forearm-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ForearmRight" class="frame-row">
+            <uie:ObjectField label="Forearm Right" name="forearm-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="forearm-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="forearm-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ShoulderLeft" class="frame-row">
+            <uie:ObjectField label="Shoulder Left" name="shoulder-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shoulder-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shoulder-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ShoulderRight" class="frame-row">
+            <uie:ObjectField label="Shoulder Right" name="shoulder-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shoulder-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shoulder-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ShinLeft" class="frame-row">
+            <uie:ObjectField label="Shin Left" name="shin-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shin-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shin-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ShinRight" class="frame-row">
+            <uie:ObjectField label="Shin Right" name="shin-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shin-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="shin-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ThighLeft" class="frame-row">
+            <uie:ObjectField label="Thigh Left" name="thigh-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="thigh-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="thigh-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ThighRight" class="frame-row">
+            <uie:ObjectField label="Thigh Right" name="thigh-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="thigh-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="thigh-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="BackGear" class="frame-row">
+            <uie:ObjectField label="Back Gear" name="back-gear" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back-gear-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back-gear-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="HeadAppendageLeft" class="frame-row">
+            <uie:ObjectField label="Head Appendage Left" name="head-appendage-left" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-appendage-left-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-appendage-left-remove-button" class="button-remove" />
+        </ui:VisualElement>
+        <ui:VisualElement name="HeadAppendageRight" class="frame-row">
+            <uie:ObjectField label="Head Appendage Right" name="head-appendage-right" />
+            <ui:Button text="Pick" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-appendage-right-pick-button" class="button-pick" />
+            <ui:Button text="Remove" parse-escape-sequences="true" display-tooltip-when-elided="true" name="head-appendage-right-remove-button" class="button-remove" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="frame-troubleshooting" class="frame-column" style="border-top-width: 2px; border-top-color: rgb(100, 100, 100); margin-top: 20px; padding-top: 12px;">
+        <ui:Label text="🔧 Troubleshooting Mode" class="header-text" />
+        <ui:VisualElement class="frame-row">
+            <ui:Toggle text="Enable Debug Logs (Socket Sync, Part Equipping)" name="toggle-debug-logs" value="false" />
+        </ui:VisualElement>
+        <ui:Label text="Enable to see detailed console logs when syncing sockets or equipping parts. Useful for diagnosing socket positioning issues." style="font-size: 10px; color: rgb(150, 150, 150); white-space: normal; margin-left: 4px; margin-right: 4px;" />
+    </ui:VisualElement>
+</ui:UXML>

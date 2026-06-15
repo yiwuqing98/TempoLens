@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0be9d85718f5da84abe419f63fb6a01c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Resources/UI.uxml
+  uploadId: 862226

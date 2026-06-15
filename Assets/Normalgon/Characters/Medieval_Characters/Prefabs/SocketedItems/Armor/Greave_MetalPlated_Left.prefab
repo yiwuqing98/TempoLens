@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6476768709944662934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2891588614261248792}
+  m_Layer: 0
+  m_Name: Greave_MetalPlated_Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2891588614261248792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476768709944662934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4727013870309576263}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5049383371794868652
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2891588614261248792}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17994891
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4600251
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.012082608
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.009293317
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9995097
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.029766493
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0028257442
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a76220ad07768bf408e83d97f67237eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Greave_MetalPlated_Left
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a76220ad07768bf408e83d97f67237eb, type: 3}
+--- !u!4 &4727013870309576263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a76220ad07768bf408e83d97f67237eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5049383371794868652}
+  m_PrefabAsset: {fileID: 0}

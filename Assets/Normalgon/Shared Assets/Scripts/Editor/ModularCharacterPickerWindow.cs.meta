@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 841c5897f01cc044ca9aad4eb6a800fe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Scripts/Editor/ModularCharacterPickerWindow.cs
+  uploadId: 862226

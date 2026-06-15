@@ -1,0 +1,110 @@
+.unity-object-field-display__label {
+    flex-basis: 0;
+}
+
+.pick-remove-button-group {
+    flex-direction: row;
+}
+
+Button.unity-button.button-pick {
+    border-left-color: rgb(105, 203, 120);
+    border-right-color: rgb(105, 203, 120);
+    border-top-color: rgb(105, 203, 120);
+    border-bottom-color: rgb(105, 203, 120);
+    border-left-width: 2px;
+}
+
+Button.unity-button.button-remove {
+    width: 60px;
+    min-width: 50px;
+    max-width: 70px;
+    flex-shrink: 0;
+    border-left-width: 2px;
+    border-left-color: rgb(207, 93, 93);
+    border-right-color: rgb(207, 93, 93);
+    border-top-color: rgb(207, 93, 93);
+    border-bottom-color: rgb(207, 93, 93);
+}
+
+Button.unity-button {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 5px;
+    padding-bottom: 0;
+    padding-left: 5px;
+}
+
+.frame-row {
+    flex-direction: row;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    background-color: rgba(8, 111, 118, 0.29);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-top: 3px;
+}
+
+.frame-row > * {
+    flex-grow: 1;
+}
+
+.frame-row > Button {
+    flex-grow: 0;
+    margin-left: 3px;
+}
+
+.frame-column {
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.header-text {
+    font-size: 16px;
+}
+
+Foldout {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgba(255, 255, 255, 0.17);
+    border-right-color: rgba(255, 255, 255, 0.17);
+    border-top-color: rgba(255, 255, 255, 0.17);
+    border-bottom-color: rgba(255, 255, 255, 0.17);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 16px;
+}
+
+.unity-base-field {
+    flex-direction: column;
+}

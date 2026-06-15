@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bac9e25f92a23ca418c931a2a5f95954
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Scripts/BoneRemapper.cs
+  uploadId: 862226

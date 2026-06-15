@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 52b6d730e9e00f44cb2cb4fa7e3fede6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Scripts/Editor/UV2ColorMapperGUI.cs
+  uploadId: 862226

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 167b91a132cfc5a4b81458cc21d4c9d8
+labels:
+- HairPart
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Characters/Medieval_Characters/Prefabs/RiggedParts/Helmet_Hair/Hair_Short_LowerLargeBun.prefab
+  uploadId: 862226

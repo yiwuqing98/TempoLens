@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_CharacterColor
+  m_Shader: {fileID: 4800000, guid: 77d56674b2a276f41834e2b2ee09cae3, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _GAMMACORRECTVERTEXCOLORS_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Cull: 2
+    - _DoubleSided: 0
+    - _GammaCorrectVertexColors: 1
+    - _Metallic: 0
+    - _Smoothness: 0
+    m_Colors:
+    - _Color0_0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_4: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_5: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_7: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_8: {r: 0, g: 0, b: 0, a: 0}
+    - _Color0_9: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_4: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_5: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_7: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_8: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1_9: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_4: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_5: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_7: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_8: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2_9: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_4: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_5: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_7: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_8: {r: 0, g: 0, b: 0, a: 0}
+    - _Color3_9: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_4: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_5: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_7: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_8: {r: 0, g: 0, b: 0, a: 0}
+    - _Color4_9: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_0: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_3: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_4: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_5: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_6: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_7: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_8: {r: 0, g: 0, b: 0, a: 0}
+    - _Color5_9: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow2_End: {r: 0, g: 0, b: 1, a: 1}
+    - _GradientRow2_Start: {r: 1, g: 0, b: 0, a: 1}
+    - _GradientRow3_End: {r: 1, g: 1, b: 0, a: 1}
+    - _GradientRow3_Start: {r: 0, g: 1, b: 0, a: 1}
+    - _GradientRow4_End: {r: 1, g: 0.8509433, b: 0.8509433, a: 1}
+    - _GradientRow4_Start: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientRow5_End: {r: 1, g: 1, b: 0, a: 1}
+    - _GradientRow5_Start: {r: 0, g: 1, b: 0, a: 1}
+    - _GradientRow6_End: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow6_Start: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow7_End: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow7_Start: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow8_End: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow8_Start: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow9_End: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientRow9_Start: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

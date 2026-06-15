@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 77d56674b2a276f41834e2b2ee09cae3
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Shaders/UV2ColorMapper.shader
+  uploadId: 862226

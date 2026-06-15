@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cc333325d3104294eb9b298bf6e93f33
+labels:
+- HairPart
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Characters/Medieval_Characters/Prefabs/RiggedParts/Helmet_Hair/Hair_Long_PrincessStyle.prefab
+  uploadId: 862226

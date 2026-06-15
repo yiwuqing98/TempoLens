@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5f2d5c0285b8bf448d12fec158fe3f5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Materials/M_SimpleGoundColor.mat
+  uploadId: 862226

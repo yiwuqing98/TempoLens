@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5edbfff0eb5e4d845a99ebe9d1ad5af2
+labels:
+- HairPart
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Characters/Medieval_Characters/Prefabs/RiggedParts/Helmet_Hair/Hair_Long_SideBangs.prefab
+  uploadId: 862226

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 21e60cc0380a67041875b6cf2889e154
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 361482
+  packageName: Modular Characters - Basic
+  packageVersion: 1.0
+  assetPath: Assets/Normalgon/Shared Assets/Materials/M_CharacterColor.mat
+  uploadId: 862226

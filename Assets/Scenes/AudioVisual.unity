@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepSound: {fileID: 8300000, guid: 5d6a0dbd1d46f8e4bb2bb05d161c052a, type: 3}
   volume: 0.8
-  cadance: 180
+  cadence: 180
   isPlaying: 0
 --- !u!82 &475091517
 AudioSource:
@@ -385,7 +385,7 @@ MonoBehaviour:
   pathSmoother: {fileID: 1090641744}
   forwardMovingSpeed: 0
   sphereHeight: 0.5
-  cadance: 180
+  cadence: 180
   targetMovingSpeed: 1
   isRunning: 0
   sphereTransform: {fileID: 1129996755}
@@ -395,7 +395,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 8}
   - {x: -6, y: 0, z: 8}
   - {x: -6, y: 0, z: 0}
-  cadanceSlider: {fileID: 1340570866}
+  cadenceSlider: {fileID: 1340570866}
   paceSlider: {fileID: 1340570865}
   stepsPerJump: 1
   jumpStepDropdown: {fileID: 0}

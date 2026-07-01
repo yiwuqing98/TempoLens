@@ -11,36 +11,45 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/XREAL XR Plugin/3.1.0/Interaction Basics/HelloMR/HelloMR.unity
     guid: 0c611a2881614c644b9df39be7bf8fe6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LinearRun.unity
     guid: 40bb4646af9ec5341b28ae0b74325857
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RectangleRun.unity
     guid: 7faaa548a5a18f14788d73efd4b899a6
   - enabled: 1
     path: Assets/Scenes/WaypointRun.unity
     guid: 287cff7f81894364b8f30d505e4974b1
-  - enabled: 1
-    path: Assets/Scenes/AvatarRectangleRun.unity
-    guid: 637764eddcd8ead4aa19190ae93834ab
-  - enabled: 1
-    path: Assets/Scenes/SneakersAvatarWaypointRun.unity
-    guid: 1b8d994182a438243a6cb4c315f4836b
   - enabled: 0
-    path: Assets/Scenes/GPSTest.unity
-    guid: 5bb91f6577bb80f4194dc6cfd12675de
-  - enabled: 1
     path: Assets/Scenes/AudioVisual.unity
     guid: f98f56d6ce60eab4d87a0b87071d2753
   - enabled: 0
-    path: Assets/Scenes/EdgeColorChange 2.unity
-    guid: 70c7aff7429d13f40a0129b9d578e443
-  - enabled: 1
     path: Assets/Scenes/EdgeColorChange.unity
     guid: a74acb0f06f9a09459edc43489740e43
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GPSSpeedCadance.unity
     guid: 30795d3511ed6ba49a58b4d29fd549c6
+  - enabled: 1
+    path: Assets/Scenes/LibraryRunAvatar.unity
+    guid: a13e4f8cdb1df43448f47fef7bfa4967
+  - enabled: 0
+    path: Assets/Scenes/SneakersAvatarWaypointRun.unity
+    guid: 1b8d994182a438243a6cb4c315f4836b
+  - enabled: 0
+    path: Assets/Scenes/AvatarRectangleRun.unity
+    guid: 637764eddcd8ead4aa19190ae93834ab
+  - enabled: 1
+    path: Assets/Scenes/LibraryRunSneakers.unity
+    guid: 738c21e62ed0f644e91d4b2257942dc1
+  - enabled: 1
+    path: Assets/Scenes/LibraryRunEdge.unity
+    guid: 7c0bb03866f3d4a45be0f1c1b8cb4808
+  - enabled: 1
+    path: Assets/Scenes/LibraryRunSphere.unity
+    guid: e388c42dca0cfba468f3b72d9f4f40fb
+  - enabled: 1
+    path: Assets/Scenes/LibraryRunAudio.unity
+    guid: 6c6b3716a7ea3334fbf84799490c2233
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c4340dbb996137d4abd27f5817e75998, type: 2}

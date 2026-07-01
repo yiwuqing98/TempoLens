@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class PacePointManager : MonoBehaviour
 {
@@ -24,12 +25,34 @@ public class PacePointManager : MonoBehaviour
     [Header("Pace Point Status")]
     public float forwardMovingSpeed = 0f;   
     public float sphereHeight = 0.5f; 
-    public float cadance = 180f;    
+    public float cadence = 180f;    
     public float targetMovingSpeed = 1f;
     public bool isRunning = false;  
 
     // --- 新增：用于记录在自定义模式下，小球是否已经传送到了起点 ---
     private bool _hasAutoSnappedToStart = false; 
+
+    // ==========================================
+    // --- 新增：动态相对高度调节参数 ---
+    // ==========================================
+    [Header("--- 核心升级：动态高度调节 ---")]
+    public bool enableDynamicHeight = true;         // 是否开启高度自适应
+    public float targetRelativeHeight = 1.3f;       // 期望的相对高度差 (Camera.y - Sphere.y)
+    public float heightHistoryDuration = 5f;        // 历史记录时长(秒)
+    public float heightAdjustThreshold = 0.1f;      // 触发高度调整的阈值 (偏离多少米才调整)
+    public float heightAdjustSpeed = 2f;            // 高度调整的平滑渐变速度
+
+    // 用于记录历史高度的结构体
+    private struct HeightRecord 
+    {
+        public float time;
+        public float camY;
+    }
+    private Queue<HeightRecord> _camHeightHistory = new Queue<HeightRecord>();
+    private float _currentAverageCamY = 0f;
+    private float _lockedTargetSphereHeight; // 锁定小球的目标高度，用于平滑过渡
+    // ==========================================
+
 
     [Header("Sphere Reference")]
     public Transform sphereTransform;
@@ -49,12 +72,12 @@ public class PacePointManager : MonoBehaviour
     private Quaternion _pathRotation;      
 
     [Header("UI References")]
-    public UnityEngine.UI.Slider cadanceSlider; 
+    public UnityEngine.UI.Slider cadenceSlider; 
     public UnityEngine.UI.Slider paceSlider;
 
     [Header("Jump Settings")]
     public int stepsPerJump = 1; // 记录当前是几步一跳，默认 1
-    public UnityEngine.UI.Dropdown jumpStepDropdown; // 如果你用的是TMP，请改成 TMPro.TMP_Dropdown
+    public TMP_Dropdown jumpStepDropdown; // 如果你用的是TMP，请改成 TMPro.TMP_Dropdown
 
     private void Awake()
     {
@@ -70,10 +93,22 @@ public class PacePointManager : MonoBehaviour
             _pathOrigin.y = 0; 
             _pathRotation = Quaternion.identity;
         }
+
+        // 初始化动态高度目标
+        _lockedTargetSphereHeight = sphereHeight;
     }
 
     private void Update()
     {
+        // ==========================================
+        // --- 新增：每帧执行动态高度检测与计算 ---
+        // ==========================================
+        if (enableDynamicHeight && Camera.main != null)
+        {
+            UpdateDynamicHeight();
+        }
+        // ==========================================
+
         if (sphereTransform == null) return;
         
         Vector3 currentPos = sphereTransform.position;
@@ -81,9 +116,6 @@ public class PacePointManager : MonoBehaviour
         switch (currentMode)
         {
             case MovementMode.Linear:
-                // ==========================================
-                // 模式 A：原来的直线运动
-                // ==========================================
                 currentPos.y = sphereHeight;
                 currentPos += _moveDirection * forwardMovingSpeed * Time.deltaTime;
 
@@ -92,9 +124,6 @@ public class PacePointManager : MonoBehaviour
                 break;
 
             case MovementMode.Rectangle:
-                // ==========================================
-                // 模式 B：长方形循环运动 (基于相对坐标)
-                // ==========================================
                 if (localWaypoints.Count > 0 && forwardMovingSpeed > 0.001f)
                 {
                     Vector3 targetLocalPos = localWaypoints[_currentWaypointIndex];
@@ -116,13 +145,8 @@ public class PacePointManager : MonoBehaviour
                 break;
 
             case MovementMode.CustomRecorded:
-                // ==========================================
-                // 模式 C：自定义打点运动 (现在读取的是平滑后的坐标)
-                // ==========================================
-                // 确保平滑器存在，且已经生成了平滑点
                 if (pathSmoother != null && pathSmoother.SmoothedWaypoints.Count > 0 && forwardMovingSpeed > 0.001f)
                 {
-                    // --- 修改：直接读取 SmoothedWaypoints ---
                     List<Vector3> customPoints = pathSmoother.SmoothedWaypoints;
                     
                     Vector3 targetWorldPos = customPoints[_currentWaypointIndex];
@@ -136,7 +160,6 @@ public class PacePointManager : MonoBehaviour
                     if (moveDir != Vector3.zero)
                         sphereTransform.rotation = Quaternion.LookRotation(moveDir, Vector3.up);
 
-                    // 到达该点后，飞向下一个点（无限循环）
                     if (Vector3.Distance(currentPos, targetWorldPos) < 0.01f)
                         _currentWaypointIndex = (_currentWaypointIndex + 1) % customPoints.Count;
                 }
@@ -148,12 +171,56 @@ public class PacePointManager : MonoBehaviour
         sphereTransform.position = currentPos;
     }
 
+    // ==========================================
+    // --- 新增：计算 5 秒滑动窗口平均高度 ---
+    // ==========================================
+    private void UpdateDynamicHeight()
+    {
+        float currentTime = Time.time;
+        float currentCamY = Camera.main.transform.position.y;
+
+        // 1. 记录当前高度进队列
+        _camHeightHistory.Enqueue(new HeightRecord { time = currentTime, camY = currentCamY });
+
+        // 2. 剔除超过 5 秒的旧数据
+        while (_camHeightHistory.Count > 0 && _camHeightHistory.Peek().time < currentTime - heightHistoryDuration)
+        {
+            _camHeightHistory.Dequeue();
+        }
+
+        // 3. 计算队列中高度的平均值
+        float sumY = 0f;
+        foreach (var record in _camHeightHistory)
+        {
+            sumY += record.camY;
+        }
+        
+        if (_camHeightHistory.Count > 0)
+        {
+            _currentAverageCamY = sumY / _camHeightHistory.Count;
+        }
+
+        // 4. 根据当前计算的平均相机高度，算出理论上小球应该在的高度
+        float calculatedTargetSphereY = _currentAverageCamY - targetRelativeHeight;
+
+        // 5. 判断理论高度与当前锁定的目标高度差距是否超过阈值 (过滤微小抖动)
+        if (Mathf.Abs(_lockedTargetSphereHeight - calculatedTargetSphereY) > heightAdjustThreshold)
+        {
+            // 超过阈值，锁定新的目标高度
+            _lockedTargetSphereHeight = calculatedTargetSphereY;
+        }
+
+        // 6. 使用 Lerp 平滑过渡球体高度变量
+        // 这样小球不会突兀地闪现到新高度，而是像悬浮一样慢慢跟上来
+        sphereHeight = Mathf.Lerp(sphereHeight, _lockedTargetSphereHeight, Time.deltaTime * heightAdjustSpeed);
+    }
+
+
     public void SphereReset()
     {
         forwardMovingSpeed = 0;
         isRunning = false;
 
-        // --- 新增标记：只要执行过一次重置，就标记为已归位 ---
         _hasAutoSnappedToStart = true;
 
         if (sphereTransform == null || Camera.main == null) return;
@@ -184,17 +251,14 @@ public class PacePointManager : MonoBehaviour
         }
         else if (currentMode == MovementMode.CustomRecorded)
         {
-            // --- 自定义模式重置逻辑 (改为读取平滑点) ---
             if (pathSmoother != null && pathSmoother.SmoothedWaypoints.Count > 0)
             {
                 List<Vector3> customPoints = pathSmoother.SmoothedWaypoints;
                 
-                // 把球直接放到平滑路线的第一个点上
                 Vector3 targetPosition = customPoints[0];
                 targetPosition.y = sphereHeight;
                 sphereTransform.position = targetPosition;
 
-                // 目标指向第二个点（如果只有一个点，就留在原地）
                 _currentWaypointIndex = customPoints.Count > 1 ? 1 : 0;
 
                 if (customPoints.Count > 1)
@@ -215,19 +279,12 @@ public class PacePointManager : MonoBehaviour
         }
     }
 
-    // ==========================================
-    // 下面是你原本的配速和 UI 控制代码
-    // ==========================================
-    
     public void PaceStartSet() 
     { 
-        // --- 新增防呆机制 ---
-        // 如果是自定义模式，且还没被传送到过起点，自动调用一次重置归位
         if (currentMode == MovementMode.CustomRecorded && !_hasAutoSnappedToStart)
         {
             if (WaypointRecorder.Instance != null && WaypointRecorder.Instance.recordedWorldPoints.Count > 0)
             {
-                // --- 新增：在重置小球位置前，先调用 PathSmoother 生成路线 ---
                 if (pathSmoother != null)
                 {
                     pathSmoother.GenerateFilletPath(WaypointRecorder.Instance.recordedWorldPoints, sphereHeight);
@@ -242,9 +299,6 @@ public class PacePointManager : MonoBehaviour
     
     public void PaceStopSet() { isRunning = false; forwardMovingSpeed = 0f; }
 
-    /// <summary>
-    /// 新增：供其他脚本（如清理打点数据时）调用，重置防呆状态
-    /// </summary>
     public void ResetAutoSnapFlag()
     {
         _hasAutoSnappedToStart = false;
@@ -270,18 +324,47 @@ public class PacePointManager : MonoBehaviour
         SyncPaceSlider(speedInMinuteKilometer);
     }
     
-    public void CadanceUp() { if (cadance >= 240f) return; cadance += 5f; SyncCandanceSlider(); }
-    public void CadanceDown() { if (cadance <= 120f) return; cadance -= 5f; SyncCandanceSlider(); }
-    public void HeightUp() { sphereHeight += 0.20f; }
-    public void HeightDown() { sphereHeight -= 0.20f; }
+    public void CadenceUp() { if (cadence >= 240f) return; cadence += 5f; SyncCandanceSlider(); }
+    public void CadenceDown() { if (cadence <= 120f) return; cadence -= 5f; SyncCandanceSlider(); }
+
+    // ==========================================
+    // --- 优化：手动调节高度时反向校准相对高度 ---
+    // ==========================================
+    public void HeightUp() 
+    { 
+        sphereHeight += 0.20f; 
+        UpdateRelativeHeightCalibration();
+    }
+    
+    public void HeightDown() 
+    { 
+        sphereHeight -= 0.20f; 
+        UpdateRelativeHeightCalibration();
+    }
+
+    /// <summary>
+    /// 当玩家手动调节小球高度时，反向更新 targetRelativeHeight。
+    /// 这样就不会发生“我刚点上升，系统又自动把它降下去”的冲突。
+    /// </summary>
+    private void UpdateRelativeHeightCalibration()
+    {
+        _lockedTargetSphereHeight = sphereHeight; 
+        if (Camera.main != null && _camHeightHistory.Count > 0)
+        {
+            // 重新计算期望的相对高度 = 当前平均相机高度 - 你刚才手动设定的球体高度
+            targetRelativeHeight = _currentAverageCamY - sphereHeight;
+        }
+    }
+    // ==========================================
+
 
     private void SyncRunningSpeed() { if (isRunning) forwardMovingSpeed = targetMovingSpeed; }
 
-    public void SetCadanceFromSlider(float value)
+    public void SetCadenceFromSlider(float value)
     {
         float steppedValue = Mathf.Round(value / 5f) * 5f;
-        cadance = Mathf.Clamp(steppedValue, 80f, 240f);
-        if (cadanceSlider != null && cadanceSlider.value != cadance) cadanceSlider.SetValueWithoutNotify(cadance);
+        cadence = Mathf.Clamp(steppedValue, 80f, 240f);
+        if (cadenceSlider != null && cadenceSlider.value != cadence) cadenceSlider.SetValueWithoutNotify(cadence);
     }
 
     public void SetPaceFromSlider(float value)
@@ -294,25 +377,16 @@ public class PacePointManager : MonoBehaviour
         SyncPaceSlider(speedInMinuteKilometer);
     }
 
-    private void SyncCandanceSlider() { if (cadanceSlider != null) cadanceSlider.SetValueWithoutNotify(cadance); }
+    private void SyncCandanceSlider() { if (cadenceSlider != null) cadenceSlider.SetValueWithoutNotify(cadence); }
     private void SyncPaceSlider() { if (paceSlider != null) paceSlider.SetValueWithoutNotify(targetMovingSpeed); }
     private void SyncPaceSlider(float value) { if (paceSlider != null) paceSlider.SetValueWithoutNotify(value); }
 
-    /// <summary>
-    /// 暴露给 Dropdown 的 OnValueChanged 事件调用
-    /// </summary>
     public void SetStepsFromDropdown(int dropdownIndex)
     {
-        // 下拉框的 index 是从 0 开始的（0对应第一个选项）
-        // 所以我们用 index + 1 就能完美对应 1到6 步
         stepsPerJump = dropdownIndex + 1;
-        
         Debug.Log($"当前节奏更改为：{stepsPerJump} 步一跳");
     }
 
-    /// <summary>
-    /// 用于防止代码修改值时引发死循环的同步方法
-    /// </summary>
     private void SyncJumpStepDropdown()
     {
         if (jumpStepDropdown != null && jumpStepDropdown.value != (stepsPerJump - 1))

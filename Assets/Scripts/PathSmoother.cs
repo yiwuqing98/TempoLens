@@ -8,11 +8,11 @@ public class PathSmoother : MonoBehaviour
     
     [Range(0.1f, 10f)] 
     [Tooltip("期望的内切圆角半径")]
-    public float turnRadius = 1.0f; 
+    public float turnRadius = 3.0f; 
     
     [Range(2, 20)] 
     [Tooltip("每个圆弧的顶点数量（数值越大越圆滑）")]
-    public int arcResolution = 10; 
+    public int arcResolution = 20; 
     
     [Tooltip("是否将首尾连接形成闭合赛道")]
     public bool isClosedLoop = true;

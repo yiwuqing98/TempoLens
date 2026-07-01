@@ -10,7 +10,7 @@ public class AudioVisualController : MonoBehaviour
 
     [Header("--- 状态监控 (自动同步，无需修改) ---")]
     [Tooltip("当前步频 (自动从PacePointManager读取)")]
-    public float cadance = 180f; 
+    public float cadence = 180f; 
     public bool isPlaying = false;
 
     private AudioSource _audioSource;
@@ -35,10 +35,10 @@ public class AudioVisualController : MonoBehaviour
 
         // 1. 实时读取并同步主管理器的核心状态
         isPlaying = PacePointManager.Instance.isRunning;
-        cadance = PacePointManager.Instance.cadance;
+        cadence = PacePointManager.Instance.cadence;
 
         // 2. 如果主程序处于停止状态，或者没有挂载音效，直接中断并重置计时器
-        if (!isPlaying || footstepSound == null || cadance <= 0)
+        if (!isPlaying || footstepSound == null || cadence <= 0)
         {
             // 【关键】：这里必须把 _timer 归零。
             // 确保 PacePointManager 的 isRunning 再次变成 true 时，能立刻播第一声
@@ -47,7 +47,7 @@ public class AudioVisualController : MonoBehaviour
         }
 
         // 3. 计算当前步频下的每次节拍间隔时间（秒）
-        float interval = 60f / cadance;
+        float interval = 60f / cadence;
 
         // 4. 计时器累加
         _timer += Time.deltaTime;

@@ -12,7 +12,7 @@ public class PaceUIOnGlasses : MonoBehaviour
         {
             float currentPace = PacePointManager.Instance.forwardMovingSpeed;
             float targetPace = PacePointManager.Instance.targetMovingSpeed;
-            float cadance_ui = PacePointManager.Instance.cadance;
+            float cadence_ui = PacePointManager.Instance.cadence;
             
             // 获取当前场景名称
             string sceneName = SceneManager.GetActiveScene().name;
@@ -29,7 +29,7 @@ public class PaceUIOnGlasses : MonoBehaviour
             speedText.text = $"Scene: {sceneName}\n" + 
                              $"Current: {Mathf.FloorToInt(currentPaceInMinuteKilometer)}m{Mathf.RoundToInt(60f * (currentPaceInMinuteKilometer - Mathf.FloorToInt(currentPaceInMinuteKilometer)))}s [{currentPace:f2}m/s]\n" + 
                              $"Target: {Mathf.FloorToInt(targetPaceInMinuteKilometer)}m{Mathf.RoundToInt(60f * (targetPaceInMinuteKilometer - Mathf.FloorToInt(targetPaceInMinuteKilometer)))}s [{targetPace:f2}m/s]\n" + 
-                             $"Cadance: {cadance_ui}";
+                             $"Cadence: {cadence_ui}";
         }
     }
 }

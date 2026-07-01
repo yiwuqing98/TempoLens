@@ -7,15 +7,12 @@ public class SceneSwitcher : MonoBehaviour
     public static SceneSwitcher Instance { get; private set; }
 
     [Header("Scene Settings")]
-    public string scene1Name = "LinearRun"; 
-    public string scene2Name = "RectangleRun"; 
-    public string scene3Name = "WaypointRun";
-    public string scene4Name = "AvatarRectangleRun";
-    public string scene5Name = "AvatarWaypointRun";
-    public string scene6Name = "SneakersAvatarWaypointRun";
-    public string scene7Name = "AudioVisual";
-    public string scene8Name = "GPSSpeedCadance";
-    public string scene9Name = "EdgeColorChange";
+    public string scene1Name = "WaypointRun";
+    public string scene2Name = "LibraryRunAudio";
+    public string scene3Name = "LibraryRunSphere";
+    public string scene4Name = "LibraryRunAvatar";
+    public string scene5Name = "LibraryRunEdge";
+    public string scene6Name = "LibraryRunSneakers";
 
     // 使用 static (静态) 变量，保证即使场景切换了，这个计数器也不会丢失
     private static int clickCount = 0; 
@@ -67,21 +64,9 @@ public class SceneSwitcher : MonoBehaviour
         {
             LoadScene(scene5Name);
         }
-        else if (clickCount == 6)
+        else if (clickCount >= 6)
         {
             LoadScene(scene6Name);
-        }
-        else if (clickCount == 7)
-        {
-            LoadScene(scene7Name);
-        }
-        else if (clickCount == 8)
-        {
-            LoadScene(scene8Name);
-        }
-        else if (clickCount >= 9)
-        {
-            LoadScene(scene9Name);
             
             // 重置计数器，这样下一次点击又会回到第一次（场景1）
             clickCount = 0; 

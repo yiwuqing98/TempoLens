@@ -10,8 +10,8 @@ public class VirtualControllerLinker : MonoBehaviour
     public void OnPaceUp() => PacePointManager.Instance?.PaceUp();
     public void OnPaceDown() => PacePointManager.Instance?.PaceDown();
     
-    public void OnCadanceUp() => PacePointManager.Instance?.CadanceUp();
-    public void OnCadanceDown() => PacePointManager.Instance?.CadanceDown();
+    public void OnCadenceUp() => PacePointManager.Instance?.CadenceUp();
+    public void OnCadenceDown() => PacePointManager.Instance?.CadenceDown();
     
     public void OnHeightUp() => PacePointManager.Instance?.HeightUp();
     public void OnHeightDown() => PacePointManager.Instance?.HeightDown();
@@ -19,7 +19,7 @@ public class VirtualControllerLinker : MonoBehaviour
     public void OnSphereReset() => PacePointManager.Instance?.SphereReset();
 
     // 接收滑块传来的动态 float 值，并传递给 Manager
-    public void OnCadanceSliderChanged(float value) => PacePointManager.Instance?.SetCadanceFromSlider(value);
+    public void OnCadenceSliderChanged(float value) => PacePointManager.Instance?.SetCadenceFromSlider(value);
 
     public void OnPaceSliderChanged(float value) => PacePointManager.Instance?.SetPaceFromSlider(value);
 
@@ -31,4 +31,6 @@ public class VirtualControllerLinker : MonoBehaviour
     
     public void OnSetStepsFromDropdown (int dropdownIndex) => PacePointManager.Instance?.SetStepsFromDropdown(dropdownIndex);
     public void OnGPSCalibration() => GPSManager.Instance?.RelocateScene();
+    public void OnGPSLibrary() => GPSMotionAligner.Instance?.OnClickGenerateWaypoints();
+    public void OnGenerateLibraryRectangle() => LibraryRectangle.Instance?.OnClickRecord();
 }

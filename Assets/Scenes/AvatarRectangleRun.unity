@@ -322,7 +322,7 @@ MonoBehaviour:
   pathSmoother: {fileID: 0}
   forwardMovingSpeed: 0
   sphereHeight: 0.5
-  cadance: 180
+  cadence: 180
   targetMovingSpeed: 1
   isRunning: 0
   sphereTransform: {fileID: 1129996755}
@@ -332,10 +332,10 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 8}
   - {x: -6, y: 0, z: 8}
   - {x: -6, y: 0, z: 0}
-  cadanceSlider: {fileID: 1256977000}
+  cadenceSlider: {fileID: 1256977000}
   paceSlider: {fileID: 577524282}
   stepsPerJump: 1
-  jumpStepDropdown: {fileID: 0}
+  jumpStepDropdown: {fileID: 1340570865}
 --- !u!1001 &1052161128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -965,6 +965,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d8fa33597c25e24cb275f7560adaa6e, type: 3}
+--- !u!114 &1340570865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1621120726559061385, guid: 8d8fa33597c25e24cb275f7560adaa6e, type: 3}
+  m_PrefabInstance: {fileID: 1340570864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1495745916
 GameObject:
   m_ObjectHideFlags: 0

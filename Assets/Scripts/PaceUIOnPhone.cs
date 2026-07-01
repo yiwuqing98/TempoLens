@@ -11,7 +11,7 @@ public class PaceUIOnPhone : MonoBehaviour
         {
             float currentPace = PacePointManager.Instance.forwardMovingSpeed;
             float targetPace = PacePointManager.Instance.targetMovingSpeed;
-            float cadance_ui = PacePointManager.Instance.cadance;
+            float cadence_ui = PacePointManager.Instance.cadence;
             if (currentPace > 0.05f)
             {
                 float currentPaceInMinuteKilometer = 60f / 3.6f / currentPace;
@@ -19,7 +19,7 @@ public class PaceUIOnPhone : MonoBehaviour
 
                 speedText.text = $"Current: {Mathf.FloorToInt(currentPaceInMinuteKilometer)}m{Mathf.RoundToInt(60f * (currentPaceInMinuteKilometer - Mathf.FloorToInt(currentPaceInMinuteKilometer)))}s [{currentPace:f2}m/s]\n" + 
                 $"Target: {Mathf.FloorToInt(targetPaceInMinuteKilometer)}m{Mathf.RoundToInt(60f * (targetPaceInMinuteKilometer - Mathf.FloorToInt(targetPaceInMinuteKilometer)))}s [{targetPace:f2}m/s]\n" + 
-                $"Cadance: {cadance_ui}";
+                $"Cadence: {cadence_ui}";
             }
             else
             {
@@ -27,7 +27,7 @@ public class PaceUIOnPhone : MonoBehaviour
                 float targetPaceInMinuteKilometer = 60f / 3.6f / targetPace;
                 speedText.text = $"Current: {Mathf.FloorToInt(currentPaceInMinuteKilometer)}m{Mathf.RoundToInt(60f * (currentPaceInMinuteKilometer - Mathf.FloorToInt(currentPaceInMinuteKilometer)))}s [{currentPace:f2}m/s]\n" + 
                 $"Target: {Mathf.FloorToInt(targetPaceInMinuteKilometer)}m{Mathf.RoundToInt(60f * (targetPaceInMinuteKilometer - Mathf.FloorToInt(targetPaceInMinuteKilometer)))}s [{targetPace:f2}m/s]\n" + 
-                $"Cadance: {cadance_ui}";
+                $"Cadence: {cadence_ui}";
             }
         }
     }

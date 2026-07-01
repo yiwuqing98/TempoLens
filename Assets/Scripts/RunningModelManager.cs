@@ -15,7 +15,7 @@ public class RunningModelManager : MonoBehaviour
         if (PacePointManager.Instance == null || modelManagerParent == null) return;
 
         // 从你的单例中实时获取当前的步频
-        float currentCadence = PacePointManager.Instance.cadance;
+        float currentCadence = PacePointManager.Instance.cadence;
 
         // 核心优化：只有当步频数值发生真正的改变时，才执行遍历和切换逻辑
         if (currentCadence != _lastCadence)

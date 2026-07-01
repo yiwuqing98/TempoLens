@@ -20,11 +20,11 @@ public class GlowManager : MonoBehaviour
 
         // 1. 实时读取 PacePointManager 的核心状态
         bool isRunning = PacePointManager.Instance.isRunning;
-        float cadance = PacePointManager.Instance.cadance;
+        float cadence = PacePointManager.Instance.cadence;
         int steps = PacePointManager.Instance.stepsPerJump;
 
         // 2. 如果停止跑步，或步频无效，立即熄灭红光并重置节奏
-        if (!isRunning || cadance <= 0)
+        if (!isRunning || cadence <= 0)
         {
             _glowTimer = 0f; // 归零，保证下次启动时能从准确的第一拍开始亮起
             SetAlpha(0f);    // 设置为完全透明
@@ -32,8 +32,8 @@ public class GlowManager : MonoBehaviour
         }
 
         // 3. 计算当前步频下的节拍间隔时间（秒）
-        // 例如：cadance 为 180，interval 就是 0.333 秒
-        float interval = 60f / cadance * steps;
+        // 例如：cadence 为 180，interval 就是 0.333 秒
+        float interval = 60f / cadence * steps;
 
         // 4. 累加计时器 (只在 isRunning 为 true 时才会执行到这里)
         _glowTimer += Time.deltaTime;

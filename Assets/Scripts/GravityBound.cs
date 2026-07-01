@@ -22,7 +22,7 @@ public class GravityBound : MonoBehaviour
 
             int steps = PacePointManager.Instance.stepsPerJump;
 
-            frequency = PacePointManager.Instance.cadance / 30f / steps;
+            frequency = PacePointManager.Instance.cadence / 30f / steps;
             float period = 2f / frequency;
             float t = Mathf.Repeat(Time.time, period);
             float gravityOffset = 0.5f * 9.8f * Mathf.Pow(1f / frequency, 2f) - 0.5f * 9.8f * Mathf.Pow((1f / frequency) - t, 2f);

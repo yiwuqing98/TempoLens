@@ -12,7 +12,7 @@ public class WaypointRecorder : MonoBehaviour
     [Tooltip("存储所有打好的真实世界坐标")]
     public List<Vector3> recordedWorldPoints = new List<Vector3>();
 
-    // --- 新增：用于存储生成在场景里的实体标记球 ---
+    // 用于存储生成在场景里的实体标记球
     private List<GameObject> spawnedMarkers = new List<GameObject>();
 
     private void Awake()
@@ -21,59 +21,53 @@ public class WaypointRecorder : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    /// <summary>
-    /// 绑定给你的 UI 按钮或手柄按键，按一次记录一个点
-    /// </summary>
     public void RecordCurrentPosition()
     {
         if (Camera.main != null)
         {
             Vector3 camPos = Camera.main.transform.position;
-            // 强制 Y 轴为 0
             Vector3 dropPos = new Vector3(camPos.x, 0, camPos.z);
 
-            // 1. 存入坐标列表
             recordedWorldPoints.Add(dropPos);
 
-            // 2. 生成实体小球，并存入实体列表
             if (waypointMarkerPrefab != null)
             {
                 GameObject newMarker = Instantiate(waypointMarkerPrefab, dropPos, Quaternion.identity);
-                spawnedMarkers.Add(newMarker); // 存起来，为了重置的时候能找到它并销毁
+                spawnedMarkers.Add(newMarker); 
             }
-
-            Debug.Log($"成功记录第 {recordedWorldPoints.Count} 个点：{dropPos}");
         }
     }
 
     /// <summary>
-    /// --- 核心升级：彻底清空数据和实体 ---
+    /// 【防呆升级】：无论你的 UI 按钮绑定的谁，这里都会联动清理全场数据。
+    /// 确保你随时可以重新进行 LibraryRectangle 打点。
     /// </summary>
     public void ClearAllPoints()
     {
-        // 1. 遍历销毁场景里的所有标记小球
+        // 1. 销毁自己的小球并清空数据
         foreach (GameObject marker in spawnedMarkers)
         {
-            if (marker != null)
-            {
-                Destroy(marker);
-            }
+            if (marker != null) Destroy(marker);
         }
-        
-        // 2. 清空实体列表
         spawnedMarkers.Clear();
-
-        // 3. 清空坐标数据列表
         recordedWorldPoints.Clear();
 
-        Debug.Log("已彻底清空所有打点记录，并销毁了场景中的标记球！");
-        
-        // 告诉 PacePointManager，路线清空了，下次按开始时需要重新防呆传送
+        // 2. 联动强制清理长方形数据 (A, B参考点)
+        if (LibraryRectangle.Instance != null)
+        {
+            LibraryRectangle.Instance.ResetRectangle();
+        }
+
+        // 3. 联动强制清理平滑路径并重置管理器的状态
         if (PacePointManager.Instance != null)
         {
             PacePointManager.Instance.ResetAutoSnapFlag();
+            if (PacePointManager.Instance.pathSmoother != null)
+            {
+                PacePointManager.Instance.pathSmoother.SmoothedWaypoints.Clear();
+            }
         }
 
-        Debug.Log("已彻底清空所有打点记录，并重置了防呆状态！");
+        Debug.Log("[WaypointRecorder] 防呆机制生效，已彻底清空所有打点记录，现在可以重新设置长方形了！");
     }
 }

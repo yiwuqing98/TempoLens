@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LibraryRunAudio.unity
     guid: 6c6b3716a7ea3334fbf84799490c2233
+  - enabled: 1
+    path: Assets/Scenes/AudioOnly.unity
+    guid: b81e1b2e2ae0310409a457364beb59dc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c4340dbb996137d4abd27f5817e75998, type: 2}

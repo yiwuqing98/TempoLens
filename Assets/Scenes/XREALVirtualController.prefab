@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 4510527852909666174}
   - component: {fileID: 5804342212820376862}
   m_Layer: 5
-  m_Name: 2
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -764,7 +764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2260,7 +2260,7 @@ GameObject:
   - component: {fileID: 5398199544459381414}
   - component: {fileID: 5457255983220727185}
   m_Layer: 5
-  m_Name: 20
+  m_Name: 18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 20
+  m_text: 18
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2397,7 +2397,7 @@ GameObject:
   - component: {fileID: 7214845696092912720}
   - component: {fileID: 3174758349422789897}
   m_Layer: 5
-  m_Name: 240
+  m_Name: 190
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 240
+  m_text: 190
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2683,6 +2683,7 @@ MonoBehaviour:
   scene4Name: LibraryRunAvatar
   scene5Name: LibraryRunEdge
   scene6Name: LibraryRunSneakers
+  scene7Name: AudioOnly
 --- !u!1 &3160819063515521394
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,10 +3890,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3091210273452817738}
   m_HandleRect: {fileID: 1957958820114383432}
   m_Direction: 1
-  m_MinValue: 2
-  m_MaxValue: 20
+  m_MinValue: 3
+  m_MaxValue: 18
   m_WholeNumbers: 0
-  m_Value: 16
+  m_Value: 9
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4765,7 +4766,7 @@ GameObject:
   - component: {fileID: 427211521707279392}
   - component: {fileID: 1626783083193591796}
   m_Layer: 5
-  m_Name: 80
+  m_Name: 120
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4818,7 +4819,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 80
+  m_text: 120
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5382,10 +5383,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 106365219354981536}
   m_HandleRect: {fileID: 9010064975652896130}
   m_Direction: 0
-  m_MinValue: 80
-  m_MaxValue: 240
+  m_MinValue: 120
+  m_MaxValue: 190
   m_WholeNumbers: 1
-  m_Value: 180
+  m_Value: 160
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

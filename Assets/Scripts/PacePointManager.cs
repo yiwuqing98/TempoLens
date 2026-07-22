@@ -14,7 +14,6 @@ public class PacePointManager : MonoBehaviour
         CustomRecorded   // 新增的自定义打点模式
     }
 
-
     [Header("--- 核心：运动模式选择 ---")]
     public MovementMode currentMode = MovementMode.Linear;
 
@@ -52,7 +51,6 @@ public class PacePointManager : MonoBehaviour
     private float _currentAverageCamY = 0f;
     private float _lockedTargetSphereHeight; // 锁定小球的目标高度，用于平滑过渡
     // ==========================================
-
 
     [Header("Sphere Reference")]
     public Transform sphereTransform;
@@ -211,10 +209,8 @@ public class PacePointManager : MonoBehaviour
         }
 
         // 6. 使用 Lerp 平滑过渡球体高度变量
-        // 这样小球不会突兀地闪现到新高度，而是像悬浮一样慢慢跟上来
         sphereHeight = Mathf.Lerp(sphereHeight, _lockedTargetSphereHeight, Time.deltaTime * heightAdjustSpeed);
     }
-
 
     public void SphereReset()
     {
@@ -304,32 +300,48 @@ public class PacePointManager : MonoBehaviour
         _hasAutoSnappedToStart = false;
     }
 
-    public void PaceUp()
+    // ==========================================
+    // --- 修改点：Pace 控制，范围 3 到 18 分钟，间隔 5 秒 ---
+    // ==========================================
+    public void PaceUp() // 配速变快（用时变短）
     { 
-        if (targetMovingSpeed >= 8f) return; 
         float speedInMinuteKilometer = 60f / 3.6f / targetMovingSpeed; 
-        speedInMinuteKilometer -= 1f / 6f;  
+        speedInMinuteKilometer -= (5f / 60f);  // 每次减去5秒
+        
+        if (speedInMinuteKilometer < 3f) speedInMinuteKilometer = 3f; // 上限限制在最快3分钟
+        
         targetMovingSpeed = 60f / 3.6f / speedInMinuteKilometer;
         SyncRunningSpeed();
         SyncPaceSlider(speedInMinuteKilometer);
     }
 
-    public void PaceDown()
+    public void PaceDown() // 配速变慢（用时变长）
     {
-        if (targetMovingSpeed <= 0.5f) return; 
         float speedInMinuteKilometer = 60f / 3.6f / targetMovingSpeed; 
-        speedInMinuteKilometer += 1f / 6f;
+        speedInMinuteKilometer += (5f / 60f); // 每次增加5秒
+        
+        if (speedInMinuteKilometer > 18f) speedInMinuteKilometer = 18f; // 下限限制在最慢18分钟
+        
         targetMovingSpeed = 60f / 3.6f / speedInMinuteKilometer;
         SyncRunningSpeed();
         SyncPaceSlider(speedInMinuteKilometer);
     }
+    // ==========================================
     
-    public void CadenceUp() { if (cadence >= 240f) return; cadence += 5f; SyncCandanceSlider(); }
-    public void CadenceDown() { if (cadence <= 120f) return; cadence -= 5f; SyncCandanceSlider(); }
+    public void CadenceUp() 
+    { 
+        if (cadence >= 190f) return; 
+        cadence += 1f; 
+        SyncCandanceSlider(); 
+    }
 
-    // ==========================================
-    // --- 优化：手动调节高度时反向校准相对高度 ---
-    // ==========================================
+    public void CadenceDown() 
+    { 
+        if (cadence <= 120f) return; 
+        cadence -= 1f; 
+        SyncCandanceSlider(); 
+    }
+
     public void HeightUp() 
     { 
         sphereHeight += 0.20f; 
@@ -342,40 +354,38 @@ public class PacePointManager : MonoBehaviour
         UpdateRelativeHeightCalibration();
     }
 
-    /// <summary>
-    /// 当玩家手动调节小球高度时，反向更新 targetRelativeHeight。
-    /// 这样就不会发生“我刚点上升，系统又自动把它降下去”的冲突。
-    /// </summary>
     private void UpdateRelativeHeightCalibration()
     {
         _lockedTargetSphereHeight = sphereHeight; 
         if (Camera.main != null && _camHeightHistory.Count > 0)
         {
-            // 重新计算期望的相对高度 = 当前平均相机高度 - 你刚才手动设定的球体高度
             targetRelativeHeight = _currentAverageCamY - sphereHeight;
         }
     }
-    // ==========================================
-
 
     private void SyncRunningSpeed() { if (isRunning) forwardMovingSpeed = targetMovingSpeed; }
 
     public void SetCadenceFromSlider(float value)
     {
-        float steppedValue = Mathf.Round(value / 5f) * 5f;
-        cadence = Mathf.Clamp(steppedValue, 80f, 240f);
+        float steppedValue = Mathf.Round(value); 
+        cadence = Mathf.Clamp(steppedValue, 120f, 190f); 
         if (cadenceSlider != null && cadenceSlider.value != cadence) cadenceSlider.SetValueWithoutNotify(cadence);
     }
 
+    // ==========================================
+    // --- 修改点：Pace Slider，范围 3 到 18 分钟，间隔 5 秒 ---
+    // ==========================================
     public void SetPaceFromSlider(float value)
     {
-        float stepSize = 1f / 6f;
+        float stepSize = 5f / 60f; // 5秒的间隔
         float steppedValue = Mathf.Round(value / stepSize) * stepSize;
-        float speedInMinuteKilometer = Mathf.Clamp(steppedValue, 2f, 20f);
+        float speedInMinuteKilometer = Mathf.Clamp(steppedValue, 3f, 18f); // 限制在 3 到 18 分钟之间
+        
         targetMovingSpeed = 60f / 3.6f / speedInMinuteKilometer;
         SyncRunningSpeed();
         SyncPaceSlider(speedInMinuteKilometer);
     }
+    // ==========================================
 
     private void SyncCandanceSlider() { if (cadenceSlider != null) cadenceSlider.SetValueWithoutNotify(cadence); }
     private void SyncPaceSlider() { if (paceSlider != null) paceSlider.SetValueWithoutNotify(targetMovingSpeed); }

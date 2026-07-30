@@ -197,10 +197,16 @@ public class PacePointManager : MonoBehaviour
                 List<Vector3> customPoints = pathSmoother.SmoothedWaypoints;
                 int startIndex = 0;
 
-                // 跳过入弯圆弧，直接从出弯后的直线路段开始，解决“一按Start先左转回头”的问题
+
                 if (LibraryRectangle.Instance != null && LibraryRectangle.Instance.IsReady)
                 {
+                    // 图书馆赛道：第一个点是弯道，需要跳过入弯圆弧，防止一上来原地掉头
                     startIndex = Mathf.Min(pathSmoother.arcResolution, customPoints.Count - 1);
+                }
+                else if (NorthRectangle.Instance != null && NorthRectangle.Instance.IsReady)
+                {
+                    // 北方窄赛道：由于 B 点是在 A-D 的直线上，没有弯道，直接从第 0 个点起跑
+                    startIndex = 0; 
                 }
 
                 Vector3 targetPosition = customPoints[startIndex];
@@ -262,6 +268,7 @@ public class PacePointManager : MonoBehaviour
         _currentWaypointIndex = 0; 
 
         if (LibraryRectangle.Instance != null) LibraryRectangle.Instance.ResetRectangle();
+        if (NorthRectangle.Instance != null) NorthRectangle.Instance.ResetRectangle();
         if (WaypointRecorder.Instance != null) WaypointRecorder.Instance.ClearAllPoints();
         if (pathSmoother != null && pathSmoother.SmoothedWaypoints != null) pathSmoother.SmoothedWaypoints.Clear();
 

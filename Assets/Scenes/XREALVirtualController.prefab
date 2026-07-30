@@ -233,6 +233,7 @@ Transform:
   - {fileID: 1325660872612421154}
   - {fileID: 2587472874402474904}
   - {fileID: 1429587210720538965}
+  - {fileID: 8821177479006510180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5623913472152421102
@@ -2099,7 +2100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'GPSCalibration
+  m_text: 'NorthRectangle
 
 '
   m_isRightToLeft: 0
@@ -6216,6 +6217,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6930544006507371829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8821177479006510180}
+  - component: {fileID: 3500678928525479646}
+  m_Layer: 5
+  m_Name: NorthRunWaypointController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8821177479006510180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930544006507371829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4279751068700536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3500678928525479646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930544006507371829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fab8f869187f54ab66504bfb19ad53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointMarkerPrefab: {fileID: 8375268059542105591, guid: 95503de64c6e06a4484487af43de6380, type: 3}
+  distanceBC: 4
+  lengthCD: 80
+  widthDE: 1.5
+  lengthEF: 80
 --- !u!1 &7043474625810807902
 GameObject:
   m_ObjectHideFlags: 0
@@ -6535,7 +6585,7 @@ GameObject:
   - component: {fileID: 6789366443385485938}
   - component: {fileID: 5078092780031746670}
   m_Layer: 5
-  m_Name: Button_GPSCalibration
+  m_Name: Button_NorthRectangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6643,9 +6693,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 91277174663705315}
-        m_TargetAssemblyTypeName: VirtualControllerLinker, Assembly-CSharp
-        m_MethodName: OnGPSCalibration
+      - m_Target: {fileID: 3500678928525479646}
+        m_TargetAssemblyTypeName: NorthRectangle, Assembly-CSharp
+        m_MethodName: OnClickRecord
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -197,16 +197,24 @@ public class PacePointManager : MonoBehaviour
                 List<Vector3> customPoints = pathSmoother.SmoothedWaypoints;
                 int startIndex = 0;
 
+                bool isLibraryReady = LibraryRectangle.Instance != null && LibraryRectangle.Instance.IsReady;
+                bool isAimReady = AimTrackGenerator.Instance != null && AimTrackGenerator.Instance.IsReady;
+                bool isNorthReady = NorthRectangle.Instance != null && NorthRectangle.Instance.IsReady;
 
-                if (LibraryRectangle.Instance != null && LibraryRectangle.Instance.IsReady)
+                if (isLibraryReady || isAimReady)
                 {
-                    // 图书馆赛道：第一个点是弯道，需要跳过入弯圆弧，防止一上来原地掉头
+                    // 模式1：图书馆 或 视线瞄准。起点都在长方形角上，需要跳过入弯圆弧，防止一上来原地掉头
                     startIndex = Mathf.Min(pathSmoother.arcResolution, customPoints.Count - 1);
                 }
-                else if (NorthRectangle.Instance != null && NorthRectangle.Instance.IsReady)
+                else if (isNorthReady)
                 {
-                    // 北方窄赛道：由于 B 点是在 A-D 的直线上，没有弯道，直接从第 0 个点起跑
+                    // 模式2：走路双点校准 (North)。录入顺序是 B->D->E->F->A，第 0 个点就是完美的起跑直道
                     startIndex = 0; 
+                }
+                else
+                {
+                    // 其他普通自定义路径
+                    startIndex = 0;
                 }
 
                 Vector3 targetPosition = customPoints[startIndex];
@@ -267,8 +275,11 @@ public class PacePointManager : MonoBehaviour
         _hasAutoSnappedToStart = false; 
         _currentWaypointIndex = 0; 
 
+        // 保留并清空所有的打点模式器
         if (LibraryRectangle.Instance != null) LibraryRectangle.Instance.ResetRectangle();
-        if (NorthRectangle.Instance != null) NorthRectangle.Instance.ResetRectangle();
+        if (NorthRectangle.Instance != null) NorthRectangle.Instance.ResetRectangle(); 
+        if (AimTrackGenerator.Instance != null) AimTrackGenerator.Instance.ResetRectangle();
+        
         if (WaypointRecorder.Instance != null) WaypointRecorder.Instance.ClearAllPoints();
         if (pathSmoother != null && pathSmoother.SmoothedWaypoints != null) pathSmoother.SmoothedWaypoints.Clear();
 

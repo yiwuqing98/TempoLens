@@ -34,4 +34,5 @@ public class VirtualControllerLinker : MonoBehaviour
     public void OnGPSLibrary() => GPSMotionAligner.Instance?.OnClickGenerateWaypoints();
     public void OnGenerateLibraryRectangle() => LibraryRectangle.Instance?.OnClickRecord();
     public void OnGenerateNorthRectangle() => NorthRectangle.Instance?.OnClickRecord();
+    public void OnGenerateAimTrack() => AimTrackGenerator.Instance?.OnClickRecord();
 }

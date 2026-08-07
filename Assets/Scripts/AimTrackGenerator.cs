@@ -12,11 +12,11 @@ public class AimTrackGenerator : MonoBehaviour
 
     [Header("--- 赛道尺寸参数 ---")]
     [Tooltip("直道总长度 (米)，从 A 点开始算")]
-    public float lengthCD = 80.0f;
+    public float lengthCD = 100.0f;
     [Tooltip("赛道宽度 (米)")]
     public float widthDE = 1.2f;
     [Tooltip("返程直道总长度 (米)")]
-    public float lengthEF = 80.0f;
+    public float lengthEF = 100.0f;
 
     public bool IsReady => clickCount >= 2; 
 
@@ -82,7 +82,7 @@ public class AimTrackGenerator : MonoBehaviour
             if (aimLine != null) aimLine.gameObject.SetActive(false);
 
             clickCount++;
-            Debug.Log("[AimTrackGenerator] 方向已锁定！正在自动生成 80 米赛道...");
+            Debug.Log("[AimTrackGenerator] 方向已锁定！正在自动生成 100 米赛道...");
             GeneratePolygonPoints();
         }
         else
@@ -106,7 +106,7 @@ public class AimTrackGenerator : MonoBehaviour
 
     private void GeneratePolygonPoints()
     {
-        // 1. D 点 (从 A 沿锁定方向向前平移 80 米)
+        // 1. D 点 (从 A 沿锁定方向向前平移 100 米)
         Vector3 pointD = pointA + lockedDirection * lengthCD;
         SpawnMarker(pointD, "D (尽头折返点)");
 
@@ -115,7 +115,7 @@ public class AimTrackGenerator : MonoBehaviour
         Vector3 pointE = pointD + dirLeftDE * widthDE;
         SpawnMarker(pointE, "E");
 
-        // 3. F 点 (再向左转 90 度，即往回走 80 米)
+        // 3. F 点 (再向左转 90 度，即往回走 100 米)
         Vector3 dirLeftEF = Quaternion.Euler(0, -90.0f, 0) * dirLeftDE;
         Vector3 pointF = pointE + dirLeftEF * lengthEF;
         SpawnMarker(pointF, "F");

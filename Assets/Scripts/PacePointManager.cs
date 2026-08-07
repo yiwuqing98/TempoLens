@@ -28,6 +28,9 @@ public class PacePointManager : MonoBehaviour
 
     private bool _hasAutoSnappedToStart = false; 
 
+    // 👇 新增：用于保证当前场景下，数据记录只被激活一次的锁
+    private bool _hasStartedRecordingThisScene = false;
+
     [Header("--- 核心升级：动态高度调节 ---")]
     public bool enableDynamicHeight = true;         
     public float targetRelativeHeight = 1.3f;       
@@ -260,6 +263,18 @@ public class PacePointManager : MonoBehaviour
         }
         isRunning = true; 
         SyncRunningSpeed(); 
+
+        // 👇 --- 新增：单次激活机制 ---
+        if (!_hasStartedRecordingThisScene)
+        {
+            if (RunDataRecorder.Instance != null)
+            {
+                RunDataRecorder.Instance.StartRecording();
+                // 触发后立刻上锁，保证当前场景无论以后怎么点 Start，都不会再重置记录器
+                _hasStartedRecordingThisScene = true; 
+                Debug.Log("【PacePointManager】200m 数据记录已启动（本场景仅触发一次）。");
+            }
+        }
     }
     
     public void PaceStopSet() 

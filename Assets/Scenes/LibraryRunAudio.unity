@@ -172,6 +172,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6496945187173866025, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
+      propertyPath: m_EnableLowPowerTips
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496945187173866025, guid: 3182b5074a6bf3d4887a44a38cbb9cb6, type: 3}
       propertyPath: m_EnableSlamStateTips
       value: 0
       objectReference: {fileID: 0}
@@ -1315,7 +1319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2683625094856617439, guid: 8d8fa33597c25e24cb275f7560adaa6e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0005884366
+      value: -0.001654723
       objectReference: {fileID: 0}
     - target: {fileID: 3091210273452817738, guid: 8d8fa33597c25e24cb275f7560adaa6e, type: 3}
       propertyPath: m_AnchorMax.x

@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2bf38115d1c344c9675547379d90c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ButtonType: 5
+  m_ButtonType: 0
 --- !u!1 &1864107132567754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,8 +2793,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5189353861894741266}
   m_HandleRect: {fileID: 3585371558456406045}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999565
+  m_Value: 1
+  m_Size: 0.9999972
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6205,9 +6205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypointMarkerPrefab: {fileID: 8375268059542105591, guid: 95503de64c6e06a4484487af43de6380, type: 3}
   aimLine: {fileID: 1878203299041361610}
-  lengthCD: 80
+  lengthCD: 98.8
   widthDE: 1.2
-  lengthEF: 80
+  lengthEF: 98.8
 --- !u!120 &1878203299041361610
 LineRenderer:
   serializedVersion: 2
@@ -6888,7 +6888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00010631619, y: 0.00061652705}
+  m_AnchoredPosition: {x: 0.00010631619, y: -0.00080398365}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &6697515181520079162

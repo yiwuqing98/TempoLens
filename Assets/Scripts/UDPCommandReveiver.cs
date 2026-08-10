@@ -128,6 +128,13 @@ public class UDPCommandReceiver : MonoBehaviour
                 case "SET_WAYPOINT":
                     if (WaypointRecorder.Instance != null) WaypointRecorder.Instance.RecordCurrentPosition();
                     break;
+                // 👇 新增这两个微调指令
+                case "TRACK_LEFT":
+                    if (AimTrackGenerator.Instance != null) AimTrackGenerator.Instance.RotateTrack(-0.25f); // 每次向左转0.5度
+                    break;
+                case "TRACK_RIGHT":
+                    if (AimTrackGenerator.Instance != null) AimTrackGenerator.Instance.RotateTrack(0.25f);  // 每次向右转0.5度
+                    break;
             }
         }
         else if (type == "VAL" && parts.Length >= 3)

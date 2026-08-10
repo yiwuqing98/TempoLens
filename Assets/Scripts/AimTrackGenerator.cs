@@ -11,19 +11,24 @@ public class AimTrackGenerator : MonoBehaviour
     public LineRenderer aimLine; 
 
     [Header("--- 赛道尺寸参数 ---")]
-    [Tooltip("直道总长度 (米)，从 A 点开始算")]
-    public float lengthCD = 100.0f;
-    [Tooltip("赛道宽度 (米)")]
+    public float lengthCD = 98.8f;
     public float widthDE = 1.2f;
-    [Tooltip("返程直道总长度 (米)")]
-    public float lengthEF = 100.0f;
+    public float lengthEF = 98.8f;
 
-    public bool IsReady => clickCount >= 2; 
+    [Header("--- 狙击防抖设置 ---")]
+    [Range(0.05f, 1.0f)] public float aimSensitivity = 0.3f;
+    [Range(1f, 15f)] public float smoothSpeed = 5f;
+
+    // 👇 修改：现在第三次点击后，才算完全 Ready
+    public bool IsReady => clickCount >= 3; 
 
     private Vector3 pointA;
     private Vector3 lockedDirection;
     private int clickCount = 0; 
     private List<GameObject> spawnedMarkers = new List<GameObject>();
+
+    private Vector3 _baseAimDirection; 
+    private Vector3 _currentSmoothedDirection;
 
     private void Awake()
     {
@@ -35,16 +40,27 @@ public class AimTrackGenerator : MonoBehaviour
 
     private void Update()
     {
+        // 状态 1：线跟随头部移动（带有防抖处理）
         if (clickCount == 1 && Camera.main != null && aimLine != null)
         {
-            Vector3 camForward = Camera.main.transform.forward;
-            camForward.y = 0; 
-            
-            if (camForward != Vector3.zero)
+            Vector3 rawForward = GetFlatForward();
+            float angleDelta = Vector3.SignedAngle(_baseAimDirection, rawForward, Vector3.up);
+            float dampenedAngle = angleDelta * aimSensitivity;
+            Vector3 targetDirection = Quaternion.Euler(0, dampenedAngle, 0) * _baseAimDirection;
+
+            _currentSmoothedDirection = Vector3.Slerp(_currentSmoothedDirection, targetDirection, Time.deltaTime * smoothSpeed);
+
+            if (_currentSmoothedDirection != Vector3.zero)
             {
                 aimLine.SetPosition(0, pointA);
-                aimLine.SetPosition(1, pointA + camForward.normalized * lengthCD);
+                aimLine.SetPosition(1, pointA + _currentSmoothedDirection * lengthCD);
             }
+        }
+        // 👇 新增状态 2：方向已锁定，此时线不再跟随头部，而是固定显示 lockedDirection，方便遥控微调
+        else if (clickCount == 2 && aimLine != null)
+        {
+            aimLine.SetPosition(0, pointA);
+            aimLine.SetPosition(1, pointA + lockedDirection * lengthCD);
         }
     }
 
@@ -52,15 +68,18 @@ public class AimTrackGenerator : MonoBehaviour
     {
         if (Camera.main == null) return;
 
-        Vector3 currentPos = Camera.main.transform.position;
-        currentPos.y = 0; 
-
         if (clickCount == 0)
         {
-            // --- 第 1 次点击：确定 A 点位置 ---
+            // --- 第 1 次点击：记录 A 点并开启射线跟随 ---
+            Vector3 currentPos = Camera.main.transform.position;
+            currentPos.y = 0; 
             pointA = currentPos;
             SpawnMarker(pointA, "A (起跑点)");
-            clickCount++;
+            
+            _baseAimDirection = GetFlatForward();
+            _currentSmoothedDirection = _baseAimDirection;
+
+            clickCount++; // 变成 1
             
             if (aimLine != null)
             {
@@ -68,70 +87,84 @@ public class AimTrackGenerator : MonoBehaviour
                 aimLine.positionCount = 2;
             }
             
-            Debug.Log("[AimTrackGenerator] 起点 A 已记录！请用视线瞄准尽头，然后再次点击。");
+            Debug.Log("[AimTrackGenerator] 第 1 步完成：起点 A 已记录！请用视线瞄准尽头，按下以锁定基准线。");
         }
         else if (clickCount == 1)
         {
-            // --- 第 2 次点击：确定方向 ---
-            Vector3 camForward = Camera.main.transform.forward;
-            camForward.y = 0; 
-            if (camForward == Vector3.zero) camForward = Vector3.forward;
-
-            lockedDirection = camForward.normalized;
-
+            // --- 第 2 次点击：剥离头部跟随，仅仅锁定“线”的方向 ---
+            lockedDirection = _currentSmoothedDirection.normalized;
+            // 注意：这里不再隐藏射线，射线会变成红色的固定直线(或者保持原样)，留在原地供微调
+            
+            clickCount++; // 变成 2
+            Debug.Log("[AimTrackGenerator] 第 2 步完成：基准线已锁定！现在可以通过遥控器左右微调。调准后再次按下生成赛道点。");
+        }
+        else if (clickCount == 2)
+        {
+            // --- 第 3 次点击：微调完毕，正式生成柱子并隐藏射线 ---
             if (aimLine != null) aimLine.gameObject.SetActive(false);
-
-            clickCount++;
-            Debug.Log("[AimTrackGenerator] 方向已锁定！正在自动生成 100 米赛道...");
+            
             GeneratePolygonPoints();
+
+            clickCount++; // 变成 3
+            Debug.Log("[AimTrackGenerator] 第 3 步完成：正式赛道已生成并同步！");
         }
         else
         {
-            // --- 第 3 次点击：瞄歪了，清除重置 ---
-            Debug.Log("[AimTrackGenerator] 第 3 次点击：检测到重新校准需求，自动清空所有数据！可以重新记录 A 点。");
-            
-            // 优先调用 PacePointManager 的全局清理（等同于点击了 UI 上的 Clear 按钮，最安全）
-            if (PacePointManager.Instance != null)
-            {
-                PacePointManager.Instance.ClearWaypoints();
-            }
+            // --- 第 4 次点击：清空重来 ---
+            Debug.Log("[AimTrackGenerator] 第 4 步触发：重新校准需求，自动清空所有数据！");
+            if (PacePointManager.Instance != null) PacePointManager.Instance.ClearWaypoints();
             else
             {
-                // 如果场景里没有主控，就单独清空自己和记录器
                 ResetRectangle();
                 if (WaypointRecorder.Instance != null) WaypointRecorder.Instance.ClearAllPoints();
             }
         }
     }
 
+    // --- 遥控器调用的微调方法 ---
+    public void RotateTrack(float angleDegrees)
+    {
+        if (clickCount >= 2)
+        {
+            // 修改锁定的方向
+            lockedDirection = Quaternion.Euler(0, angleDegrees, 0) * lockedDirection;
+            Debug.Log($"[AimTrackGenerator] 赛道微调 {angleDegrees} 度");
+            
+            // 如果是在第 2 步微调，Update() 里的代码会自动刷新射线的视觉表现
+            // 如果是在第 3 步（点都已经生成了）还想微调，那么连带着重新生成一遍赛道点
+            if (clickCount >= 3) 
+            {
+                GeneratePolygonPoints(); 
+            }
+        }
+    }
+
     private void GeneratePolygonPoints()
     {
-        // 1. D 点 (从 A 沿锁定方向向前平移 100 米)
+        for (int i = spawnedMarkers.Count - 1; i >= 1; i--) 
+        {
+            Destroy(spawnedMarkers[i]);
+            spawnedMarkers.RemoveAt(i);
+        }
+
         Vector3 pointD = pointA + lockedDirection * lengthCD;
         SpawnMarker(pointD, "D (尽头折返点)");
 
-        // 2. E 点 (向左转 90 度，平移 1.2 米)
         Vector3 dirLeftDE = Quaternion.Euler(0, -90.0f, 0) * lockedDirection;
         Vector3 pointE = pointD + dirLeftDE * widthDE;
         SpawnMarker(pointE, "E");
 
-        // 3. F 点 (再向左转 90 度，即往回走 100 米)
         Vector3 dirLeftEF = Quaternion.Euler(0, -90.0f, 0) * dirLeftDE;
         Vector3 pointF = pointE + dirLeftEF * lengthEF;
         SpawnMarker(pointF, "F");
 
-        // 4. 同步至全局记录器 (喂给平滑算法)
         if (WaypointRecorder.Instance != null)
         {
             WaypointRecorder.Instance.recordedWorldPoints.Clear();
-            
-            // 纯长方形：A -> D -> E -> F
             WaypointRecorder.Instance.recordedWorldPoints.Add(pointA); 
             WaypointRecorder.Instance.recordedWorldPoints.Add(pointD); 
             WaypointRecorder.Instance.recordedWorldPoints.Add(pointE);
             WaypointRecorder.Instance.recordedWorldPoints.Add(pointF);
-            
-            Debug.Log("[AimTrackGenerator] 已将 A, D, E, F 同步至全局 Waypoint 列表！");
         }
     }
 
@@ -147,15 +180,20 @@ public class AimTrackGenerator : MonoBehaviour
 
     public void ResetRectangle()
     {
-        clickCount = 0; // 重置点击次数
+        clickCount = 0; 
         foreach (var marker in spawnedMarkers)
         {
             if (marker != null) Destroy(marker);
         }
         spawnedMarkers.Clear();
-        
         if (aimLine != null) aimLine.gameObject.SetActive(false);
+    }
 
-        Debug.Log("[AimTrackGenerator] 数据已清空。");
+    private Vector3 GetFlatForward()
+    {
+        if (Camera.main == null) return Vector3.forward;
+        Vector3 forward = Camera.main.transform.forward;
+        forward.y = 0; 
+        return forward == Vector3.zero ? Vector3.forward : forward.normalized;
     }
 }

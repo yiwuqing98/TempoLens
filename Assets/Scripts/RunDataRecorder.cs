@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Net.Sockets;
 
 public class RunDataRecorder : MonoBehaviour
 {
@@ -140,21 +141,42 @@ public class RunDataRecorder : MonoBehaviour
     {
         string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + SceneManager.GetActiveScene().name + ".txt";
         
-        // 👇 修改这里：直接指定为 emulated/0/ 下的公共 Documents 文件夹
         string directoryPath = "/storage/emulated/0/Documents";
-
         string filePath = Path.Combine(directoryPath, fileName);
         
         try
         {
+            // 1. 先保存在被控端 (AR设备) 本地
             File.WriteAllText(filePath, fileContent.ToString());
             
-            // 强烈的本地视觉反馈
             if (feedbackText != null)
             {
-                feedbackText.text = $"200m reached! Saved in: \n<size=50%>{filePath}</size>";
+                float totalTime = Time.time - startTime; 
+                feedbackText.text = $"200m reached in {totalTime:F1}s!"; 
             }
-            Debug.Log("[Recorder] 200m 数据已完美保存: " + filePath);
+            Debug.Log("[Recorder] 200m 数据已完美保存本地: " + filePath);
+
+            // 👇 2. 新增：同步发送一份给主控手机
+            if (!string.IsNullOrEmpty(UDPCommandReceiver.MasterPhoneIP))
+            {
+                try
+                {
+                    UdpClient udp = new UdpClient();
+                    // 构造协议包裹： FILE:文件名.txt|文件全部内容
+                    string payload = "FILE:" + fileName + "|" + fileContent.ToString();
+                    byte[] fileBytes = Encoding.UTF8.GetBytes(payload);
+                    
+                    // 发送给主控机的 8889 端口
+                    udp.Send(fileBytes, fileBytes.Length, UDPCommandReceiver.MasterPhoneIP, 8889);
+                    udp.Close();
+                    
+                    Debug.Log("[Recorder] 文件已成功通过 UDP 飞往主控机！");
+                }
+                catch (Exception udpEx)
+                {
+                    Debug.LogError("[Recorder] 发送至主控机失败: " + udpEx.Message);
+                }
+            }
         }
         catch (Exception e)
         {

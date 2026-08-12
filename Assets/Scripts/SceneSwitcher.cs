@@ -78,6 +78,17 @@ public class SceneSwitcher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 重置当前场景：重新加载当前激活的场景，清空所有状态回到初始
+    /// 可绑定到 UI 按钮或 XREAL 射线按键
+    /// </summary>
+    public void ResetCurrentScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log($"[SceneSwitcher] 正在重置场景: {currentSceneName}");
+        SceneManager.LoadScene(currentSceneName);
+    }
+
     private void LoadScene(string targetScene)
     {
         // 防呆判断：确保场景名不为空，且不要原地加载自己

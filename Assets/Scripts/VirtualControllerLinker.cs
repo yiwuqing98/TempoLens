@@ -35,4 +35,5 @@ public class VirtualControllerLinker : MonoBehaviour
     public void OnGenerateLibraryRectangle() => LibraryRectangle.Instance?.OnClickRecord();
     public void OnGenerateNorthRectangle() => NorthRectangle.Instance?.OnClickRecord();
     public void OnGenerateAimTrack() => AimTrackGenerator.Instance?.OnClickRecord();
+    public void OnResetSceneClick() => SceneSwitcher.Instance?.ResetCurrentScene();
 }

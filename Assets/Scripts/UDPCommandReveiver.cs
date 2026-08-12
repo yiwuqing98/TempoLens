@@ -125,6 +125,9 @@ public class UDPCommandReceiver : MonoBehaviour
                 case "SCENE_SWITCH":
                     if (SceneSwitcher.Instance != null) SceneSwitcher.Instance.SceneClick();
                     break;
+                case "SCENE_RESET":
+                    if (SceneSwitcher.Instance != null) SceneSwitcher.Instance.ResetCurrentScene();
+                    break;
                 case "SET_WAYPOINT":
                     if (WaypointRecorder.Instance != null) WaypointRecorder.Instance.RecordCurrentPosition();
                     break;

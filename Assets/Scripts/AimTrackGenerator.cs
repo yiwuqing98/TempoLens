@@ -11,9 +11,9 @@ public class AimTrackGenerator : MonoBehaviour
     public LineRenderer aimLine; 
 
     [Header("--- 赛道尺寸参数 ---")]
-    public float lengthCD = 98.8f;
-    public float widthDE = 1.2f;
-    public float lengthEF = 98.8f;
+    public float lengthCD = 98f;
+    public float widthDE = 2f;
+    public float lengthEF = 98f;
 
     [Header("--- 狙击防抖设置 ---")]
     [Range(0.05f, 1.0f)] public float aimSensitivity = 0.3f;

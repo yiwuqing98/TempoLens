@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RectangleRun.unity
     guid: 7faaa548a5a18f14788d73efd4b899a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WaypointRun.unity
     guid: 287cff7f81894364b8f30d505e4974b1
   - enabled: 0
@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GPSSpeedCadance.unity
     guid: 30795d3511ed6ba49a58b4d29fd549c6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LibraryRunAvatar.unity
     guid: a13e4f8cdb1df43448f47fef7bfa4967
   - enabled: 0
@@ -38,21 +38,30 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AvatarRectangleRun.unity
     guid: 637764eddcd8ead4aa19190ae93834ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LibraryRunSneakers.unity
     guid: 738c21e62ed0f644e91d4b2257942dc1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LibraryRunEdge.unity
     guid: 7c0bb03866f3d4a45be0f1c1b8cb4808
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LibraryRunSphere.unity
     guid: e388c42dca0cfba468f3b72d9f4f40fb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LibraryRunAudio.unity
     guid: 6c6b3716a7ea3334fbf84799490c2233
   - enabled: 1
     path: Assets/Scenes/AudioOnly.unity
     guid: b81e1b2e2ae0310409a457364beb59dc
+  - enabled: 1
+    path: Assets/Scenes/Cadence_Visual.unity
+    guid: 99dcab347b8487a49897d9e68c1b3095
+  - enabled: 1
+    path: Assets/Scenes/Cadence_Audio.unity
+    guid: 1bd32b1b77835ed4a88e9317d25fc1a8
+  - enabled: 1
+    path: Assets/Scenes/Cadence_Both.unity
+    guid: 3083555dfb2171043a8fcbfa8904d71a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c4340dbb996137d4abd27f5817e75998, type: 2}

@@ -2829,13 +2829,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629b2151dc08e5d40830ea45730f7ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene1Name: WaypointRun
-  scene2Name: LibraryRunAudio
-  scene3Name: LibraryRunSphere
-  scene4Name: LibraryRunAvatar
-  scene5Name: LibraryRunEdge
-  scene6Name: LibraryRunSneakers
-  scene7Name: AudioOnly
+  scene1Name: AudioOnly
+  scene2Name: Cadence_Visual
+  scene3Name: Cadence_Audio
+  scene4Name: Cadence_Both
 --- !u!1 &3160819063515521394
 GameObject:
   m_ObjectHideFlags: 0

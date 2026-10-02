@@ -10540,6 +10540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042135108}
+  - component: {fileID: 2042135109}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -10547,6 +10548,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2042135109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042135107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81739f306e14814abaf0a62c579dc25, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!4 &2042135108
 Transform:
   m_ObjectHideFlags: 0

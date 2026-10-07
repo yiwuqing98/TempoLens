@@ -6,6 +6,9 @@ public class PacePointManager : MonoBehaviour
 {
     public static PacePointManager Instance { get; private set; }
 
+    public const float MinCadence = 120f;
+    public const float MaxCadence = 200f;
+
     public enum MovementMode
     {
         Linear,          
@@ -323,8 +326,8 @@ public class PacePointManager : MonoBehaviour
         SyncPaceSlider(speedInMinuteKilometer);
     }
     
-    public void CadenceUp() { if (cadence >= 190f) return; cadence += 1f; SyncCandanceSlider(); }
-    public void CadenceDown() { if (cadence <= 120f) return; cadence -= 1f; SyncCandanceSlider(); }
+    public void CadenceUp() { SetCadenceFromSlider(cadence + 1f); }
+    public void CadenceDown() { SetCadenceFromSlider(cadence - 1f); }
     public void HeightUp() { sphereHeight += 0.20f; UpdateRelativeHeightCalibration(); }
     public void HeightDown() { sphereHeight -= 0.20f; UpdateRelativeHeightCalibration(); }
 
@@ -342,7 +345,7 @@ public class PacePointManager : MonoBehaviour
     public void SetCadenceFromSlider(float value)
     {
         float steppedValue = Mathf.Round(value); 
-        cadence = Mathf.Clamp(steppedValue, 120f, 190f); 
+        cadence = Mathf.Clamp(steppedValue, MinCadence, MaxCadence);
         if (cadenceSlider != null && cadenceSlider.value != cadence) cadenceSlider.SetValueWithoutNotify(cadence);
     }
 
